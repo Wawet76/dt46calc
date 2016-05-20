@@ -79,5 +79,5 @@ function dt46calc(nakedWeight, jumps) {
     } else if (nakedWeight > 110) {
         nakedWeight = 110;
     }
-    return dt46table[nakedWeight][interval];
+    return dt46table[Math.round(nakedWeight)][interval];
 }

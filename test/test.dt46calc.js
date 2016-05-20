@@ -18,4 +18,14 @@ describe("dt46calc", function() {
         assert.strictEqual(dt46calc(130, 100), 276);
         assert.strictEqual(dt46calc(111, 1600), 138);
     });
+
+    it("should round weight half down", function() {
+        assert.strictEqual(dt46calc(60.2, 0), 175);
+        assert.strictEqual(dt46calc(60.5, 0), 178);
+        assert.strictEqual(dt46calc(60.7, 0), 178);
+    });
+
+    it("should round down jump number", function() {
+        assert.strictEqual(dt46calc(60, 99.9), 175);
+    });
 });
