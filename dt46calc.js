@@ -73,6 +73,11 @@ function dt46calc(nakedWeight, jumps) {
     } else {
         interval = 8;
     }
-    
+
+    if (nakedWeight < 60) {
+        nakedWeight = 60;
+    } else if (nakedWeight > 110) {
+        nakedWeight = 110;
+    }
     return dt46table[nakedWeight][interval];
 }
