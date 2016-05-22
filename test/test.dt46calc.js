@@ -53,4 +53,18 @@ describe("dt46calc", function() {
         assert.strictEqual(dt46calc(60, 2001).error, "2000Jumps");
     });
 
+    it("should round up 11% limit", function() {
+        // 175 * 0.89 = 155.75
+        assert.strictEqual(dt46calc(60, 0).minSize11, 156);
+        // 178 * 0.89 = 158.42
+        assert.strictEqual(dt46calc(61, 0).minSize11, 159);
+    });
+
+    it("should round up 21% limit", function() {
+        // 175 * 0.79 = 138.25
+        assert.strictEqual(dt46calc(60, 0).minSize21, 139);
+        // 178 * 0.79 = 140.62
+        assert.strictEqual(dt46calc(61, 0).minSize21, 141);
+    });
+
 });
