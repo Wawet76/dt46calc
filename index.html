@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>Calculette DT46</title>
+<script src="dt46calc.js"></script>
+</head>
+<body>
+	<h1>Calculette DT46</h1>
+	Poids nu en kg :
+	<input type="number" id="weight" size="3" onkeyup="update()" onchange="update()" /><br />
+	Nombre de sauts :
+	<input type="number" id="jumps" size="5" onkeyup="update()" onchange="update()" /><br />
+	Taille de voile minimum : <span id="result"></span><br />
+	Moins 11% : <span id="result11"></span><br />
+	Moins 21% : <span id="result21"></span><br />
+	<script>
+        function update() {
+            var weightInput = document.getElementById("weight");
+            var jumpsInput = document.getElementById("jumps");
+            
+            var data = dt46calc(weightInput.value, jumpsInput.value);
+            
+            if (data.minSize) {
+                document.getElementById("result").innerHTML = data.minSize; 
+                document.getElementById("result11").innerHTML = data.minSize11; 
+                document.getElementById("result21").innerHTML = data.minSize21; 
+            } else {
+                document.getElementById("result").innerHTML = "-"; 
+                document.getElementById("result11").innerHTML = "-"; 
+                document.getElementById("result21").innerHTML = "-"; 
+            }
+        }
+        update(); // for page reload
+    </script>
+</html>
