@@ -20,12 +20,37 @@ describe("dt46calc", function() {
     });
 
     it("should round weight half down", function() {
-        assert.strictEqual(dt46calc(60.2, 0).minSize, 175);
-        assert.strictEqual(dt46calc(60.5, 0).minSize, 178);
-        assert.strictEqual(dt46calc(60.7, 0).minSize, 178);
+        assert.strictEqual(dt46calc(60.2, 0).weight, 60);
+        assert.strictEqual(dt46calc(60.5, 0).weight, 61);
+        assert.strictEqual(dt46calc(60.7, 0).weight, 61);
+    });
+
+    it("should parse weight input", function() {
+        assert.strictEqual(dt46calc(60.0, 0).weight, 60);
+        assert.strictEqual(dt46calc("60", 0).weight, 60);
+        assert.strictEqual(dt46calc("60.0", 0).weight, 60);
+        assert.strictEqual(dt46calc("60,7", 0).weight, 61);
+    });
+
+    it("should report invalid weight", function() {
+        assert.strictEqual(dt46calc("toto", 0).error, "invalidWeight");
     });
 
     it("should round down jump number", function() {
-        assert.strictEqual(dt46calc(60, 99.9).minSize, 175);
+        assert.strictEqual(dt46calc(60, 99.9).jumps, 99);
     });
+
+    it("should parse jumps input", function() {
+        assert.strictEqual(dt46calc(60, 100.0).jumps, 100);
+        assert.strictEqual(dt46calc(60, "100").jumps, 100);
+    });
+
+    it("should report invalid jumps", function() {
+        assert.strictEqual(dt46calc(60, "toto").error, "invalidJumps");
+    });
+
+    it("should report more than 2000 jumps", function() {
+        assert.strictEqual(dt46calc(60, 2001).error, "2000Jumps");
+    });
+
 });

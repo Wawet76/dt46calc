@@ -1,6 +1,6 @@
 function dt46calc(nakedWeight, jumps) {
     "use strict";
-    var line, column, result = {}, dt46table = {
+    var result = {}, dt46table = {
 	"60" : [ 175, 161, 147, 133, 124, 115, 107, 97, 89 ],
 	"61" : [ 178, 163, 149, 135, 126, 116, 108, 98, 90 ],
 	"62" : [ 180, 166, 151, 137, 127, 118, 109, 99, 91 ],
@@ -78,15 +78,45 @@ function dt46calc(nakedWeight, jumps) {
 	return column;
     }
     
-    if (nakedWeight < 60) {
-	line = 60;
-    } else if (nakedWeight > 110) {
-	line = 110;
-    } else {
-	line = Math.round(nakedWeight);
+    function getTableLine(weight) {
+        var line;
+        if (weight < 60) {
+            line = 60;
+        } else if (weight > 110) {
+            line = 110;
+        } else {
+            line = weight;
+        }
+        return line;
+    }
+
+    function parseWeight(input) {
+	if ("string" === typeof input) {
+	    input = input.replace(",", ".");
+	}
+	input = parseFloat(input); 
+	return Math.round(input);
     }
     
-    return {
-	minSize : dt46table[line][getTableColumn(jumps)]
-    };
+    function parseJumps(input) {
+	input = parseFloat(input); 
+	return Math.floor(input);
+    }
+    
+    result.weight = parseWeight(nakedWeight);
+    if (isNaN(result.weight)) {
+	return {error: "invalidWeight"};
+    }
+    
+    result.jumps = parseJumps(jumps);
+    if (isNaN(result.jumps)) {
+	return {error: "invalidJumps"};
+    }
+    if (result.jumps > 2000) {
+        return {error: "2000Jumps"};
+    }
+    
+    result.minSize = dt46table[getTableLine(result.weight)][getTableColumn(result.jumps)];
+    
+    return result;
 }
