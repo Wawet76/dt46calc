@@ -1,3 +1,9 @@
+/*
+ * Copyright (c) 2016 Thomas Walraet
+ * License: MIT
+ * 
+ */
+
 function dt46calc(nakedWeight, jumps) {
     "use strict";
     var result = {};
