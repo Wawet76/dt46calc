@@ -4,33 +4,51 @@
 <meta charset="utf-8" />
 <title>Calculette DT46</title>
 <script src="dt46calc.js"></script>
-</head>
-<body>
-	<h1>Calculette DT46</h1>
-	Poids nu en kg :
-	<input type="number" id="weight" size="3" onkeyup="update()" onchange="update()" /><br />
-	Nombre de sauts :
-	<input type="number" id="jumps" size="5" onkeyup="update()" onchange="update()" /><br />
-	Taille de voile minimum : <span id="result"></span><br />
-	Moins 11% : <span id="result11"></span><br />
-	Moins 21% : <span id="result21"></span><br />
-	<script>
-        function update() {
-            var weightInput = document.getElementById("weight");
-            var jumpsInput = document.getElementById("jumps");
-            
-            var data = dt46calc(weightInput.value, jumpsInput.value);
-            
-            if (data.minSize) {
-                document.getElementById("result").innerHTML = data.minSize; 
-                document.getElementById("result11").innerHTML = data.minSize11; 
-                document.getElementById("result21").innerHTML = data.minSize21; 
-            } else {
-                document.getElementById("result").innerHTML = "-"; 
-                document.getElementById("result11").innerHTML = "-"; 
-                document.getElementById("result21").innerHTML = "-"; 
+<script>
+    function update() {
+        var weightInput = document.getElementById("weight");
+        var jumpsInput = document.getElementById("jumps");
+
+        var data = dt46calc(weightInput.value, jumpsInput.value);
+
+        if (data.error) {
+            if (data.error === "invalidWeight") {
+                document.getElementById("error").innerHTML = "Veuillez saisir votre poids.";
+            } else if (data.error === "invalidJumps") {
+                document.getElementById("error").innerHTML = "Veuillez saisir votre nombre de sauts.";
+            } else if (data.error === "2000Jumps") {
+                document.getElementById("error").innerHTML = "Vous êtes en dehors du tableau de la DT46.";
             }
+            document.getElementById("resultWeight").innerHTML = "-";
+            document.getElementById("resultJumps").innerHTML = "-";
+            document.getElementById("result").innerHTML = "-";
+            document.getElementById("result11").innerHTML = "-";
+            document.getElementById("result21").innerHTML = "-";
+        } else {
+            document.getElementById("error").innerHTML = "";
+            document.getElementById("resultWeight").innerHTML = data.weight + " kg";
+            document.getElementById("resultJumps").innerHTML = data.jumps;
+            document.getElementById("result").innerHTML = data.minSize + " pieds carrés";
+            document.getElementById("result11").innerHTML = data.minSize11 + " pieds carrés";
+            document.getElementById("result21").innerHTML = data.minSize21 + " pieds carrés";
         }
-        update(); // for page reload
-    </script>
+    }
+</script>
+</head>
+<body onload="update()">
+	<h1>Calculette DT46</h1>
+	<p>
+	<span id="error"></span>
+	<br /> Poids nu en kg :	<input type="number" id="weight" onkeyup="update()" onchange="update()" />
+	<br /> Nombre de sauts : <input type="number" id="jumps" value="0" onkeyup="update()" onchange="update()" />
+	<br />
+	<br /> Poids retenu : <span id="resultWeight"></span>
+	<br /> Nombre de sauts : <span id="resultJumps"></span>
+	<br /> Taille de voile minimum : <span id="result"></span>
+	<br /> Moins 11% : <span id="result11"></span>
+	<br /> Moins 21% : <span id="result21"></span>
+	</p>
+	<p>
+	  Le code de cette calculette est libre. Vous pouvez le <a href="https://github.com/Wawet76/dt46calc">récupérer sur Github</a>, et <a href="test/test.dt46calc.html">consulter les tests unitaires</a>.
+	</p>
 </html>
