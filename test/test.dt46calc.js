@@ -19,17 +19,15 @@ describe("dt46calc", function() {
         assert.strictEqual(dt46calc(111, 1600).minSize, 138);
     });
 
-    it("should round weight half down", function() {
-        assert.strictEqual(dt46calc(60.2, 0).weight, 60);
-        assert.strictEqual(dt46calc(60.5, 0).weight, 61);
-        assert.strictEqual(dt46calc(60.7, 0).weight, 61);
+    it("should round down weight", function() {
+        assert.strictEqual(dt46calc(60.7, 0).weight, 60);
     });
 
     it("should parse weight input", function() {
         assert.strictEqual(dt46calc(60.0, 0).weight, 60);
         assert.strictEqual(dt46calc("60", 0).weight, 60);
         assert.strictEqual(dt46calc("60.0", 0).weight, 60);
-        assert.strictEqual(dt46calc("60,7", 0).weight, 61);
+        assert.strictEqual(dt46calc("60,7", 0).weight, 60);
     });
 
     it("should report invalid weight", function() {

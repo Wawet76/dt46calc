@@ -97,15 +97,7 @@ function dt46calc(nakedWeight, jumps) {
         return line;
     }
 
-    function parseWeight(input) {
-        if ("string" === typeof input) {
-            input = input.replace(",", ".");
-        }
-        input = parseFloat(input);
-        return Math.round(input);
-    }
-
-    function parseJumps(input) {
+    function parseInput(input) {
         input = parseFloat(input);
         return Math.floor(input);
     }
@@ -114,14 +106,14 @@ function dt46calc(nakedWeight, jumps) {
         return Math.ceil(surface * (100 - percentageOf) / 100);
     }
 
-    result.weight = parseWeight(nakedWeight);
+    result.weight = parseInput(nakedWeight);
     if (isNaN(result.weight)) {
         return {
             error : "invalidWeight"
         };
     }
 
-    result.jumps = parseJumps(jumps);
+    result.jumps = parseInput(jumps);
     if (isNaN(result.jumps)) {
         return {
             error : "invalidJumps"
