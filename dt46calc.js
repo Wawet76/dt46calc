@@ -102,8 +102,8 @@ function dt46calc(nakedWeight, jumps) {
         return Math.floor(input);
     }
 
-    function reduceLimit(surface, percentageOf) {
-        return Math.ceil(surface * (100 - percentageOf) / 100);
+    function reduceLimit(surface, percentOff) {
+        return Math.ceil(surface * (100 - percentOff) / 100);
     }
 
     result.weight = parseInput(nakedWeight);
