@@ -11,8 +11,8 @@ Il suffit d'importer dans votre page web le fichier dt46calc.js, puis d'appeler 
  
 La fonction renvoie un objet javascript avec les attributs suivant :
  * weight : Poids retenu pour le calcul.
- * jumps : Nombre de saut retenu pour le calcul.
- * minSize : Taille de voile minimum autorisé par la DT46.
+ * jumps : Nombre de sauts retenu pour le calcul.
+ * minSize : Taille de voile minimum autorisée par la DT46.
  * minSize11 : Taille minimum avec l'aménagement de 11%.
  * minSize21 : Taille minimum avec l'aménagement transitoire de 21%.
  
