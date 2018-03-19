@@ -1,5 +1,5 @@
 # dt46calc
-Code javascript pour obtenir la surface de voile minimum autorisée par la directive technique 46 de la fédération française de parachutisme.
+Code javascript pour obtenir la surface de voile minimum autorisée par les directives techniques 46 et 48 de la fédération française de parachutisme.
 
 ## Fonctionnement
 Le calcul se base sur le tableau disponible dans la version PDF de la directive technique. Voir les tests unitaires pour les détails.
@@ -12,7 +12,7 @@ Il suffit d'importer dans votre page web le fichier dt46calc.js, puis d'appeler 
 La fonction renvoie un objet javascript avec les attributs suivant :
  * weight : Poids retenu pour le calcul.
  * jumps : Nombre de sauts retenu pour le calcul.
- * minSize : Taille de voile minimum autorisée par la DT46.
+ * minSize : Taille de voile minimum autorisée par les DT46 et DT48.
  * minSize11 : Taille minimum avec l'aménagement de 11%.
  * minSize21 : Taille minimum avec l'aménagement transitoire de 21%.
  

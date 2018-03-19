@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="utf-8" />
-<title>Calculette DT46</title>
+<title>Calculette DT48</title>
 <script src="dt46calc.js"></script>
 <script>
     function update() {
@@ -17,7 +17,7 @@
             } else if (data.error === "invalidJumps") {
                 document.getElementById("error").innerHTML = "Veuillez saisir votre nombre de sauts.";
             } else if (data.error === "2000Jumps") {
-                document.getElementById("error").innerHTML = "Vous êtes en dehors du tableau de la DT46.";
+                document.getElementById("error").innerHTML = "Vous êtes en dehors du tableau de la DT48.";
             }
             document.getElementById("resultWeight").innerHTML = "-";
             document.getElementById("resultJumps").innerHTML = "-";
@@ -36,7 +36,7 @@
 </script>
 </head>
 <body onload="update()">
-	<h1>Calculette DT46</h1>
+	<h1>Calculette DT48</h1>
 	<p>
 	<span id="error"></span>
 	<br /> Poids nu en kg :	<input type="number" id="weight" onkeyup="update()" onchange="update()" />
